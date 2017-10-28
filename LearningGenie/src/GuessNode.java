@@ -15,23 +15,23 @@ public class GuessNode implements DecisionNode {
 	}
 	
 	public int countObjects() {
-		return 0;
+		return 1;
 	}
 	
 	public DecisionNode guess(Scanner in) {
-		System.out.println("Are you thinking of "+guess+" ?");
+		System.out.print("Are you thinking of "+guess+" ?");
 		String answer = in.nextLine();
 		if(answer.equals("Yes")){
-			return this;
+			System.out.println("Excellent, thanks!");
 		}else {
 			System.out.println("Oh no, I was wrong!");
 			System.out.println("What animal were you thinking of?");
 			String animal = in.nextLine();
 			System.out.println("What is a yes/no question that distinguishes a "+guess+" from a "+animal+"?");
 			String question = in.nextLine();
-			DecisionNode q =(DecisionNode) new QuestionNode(question, new GuessNode(animal), new GuessNode(this.guess));
+			QuestionNode q = new QuestionNode(question, new GuessNode(animal), new GuessNode(this.guess));
+			System.out.println("Thanks! I'll learn from this experience!");	
 			return q;
-			
 			/*
 			System.out.println("Oh no, I was wrong!");
 			System.out.println("What animal were you thinking of?");
@@ -39,6 +39,7 @@ public class GuessNode implements DecisionNode {
 			System.out.println("What is a yes/no question that distinguishes a Dog from a Cat?");
 		*/
 		}	
+		return this;
 	}
 	
 	public void write(FileWriter out) throws IOException {

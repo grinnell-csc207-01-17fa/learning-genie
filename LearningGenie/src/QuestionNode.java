@@ -2,7 +2,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class QuestionNode {
+public class QuestionNode implements DecisionNode{
 
 	public String question;
 	public DecisionNode left;
@@ -16,7 +16,7 @@ public class QuestionNode {
 	}
 	
 	public int countObjects() {
-		return guessNodes;
+		return this.left.countObjects() + this.right.countObjects();
 	}
 	
 	public DecisionNode guess(Scanner in) {
