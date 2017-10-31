@@ -8,17 +8,33 @@ public class QuestionNode implements DecisionNode{
 	public DecisionNode left;
 	public DecisionNode right;
 	public int guessNodes;
+	
+	
+    /**
+     * Constructs a QuestionNode
+     * @param question, the String form of the question
+     * @param left, a DecisionNode represents yes
+     * @param right, a DecisionNode represents no
+     */
 	//Constructor
 	public QuestionNode(String question, DecisionNode left, DecisionNode right){
 		this.question = question;
 		this.left = left;
 		this.right = right;
 	}
-	//Get a count of object viewable/known by the program.
+	
+	/**
+     * Count the number of objects from the current Node
+     * @param none
+     */
 	public int countObjects() {
 		return this.left.countObjects() + this.right.countObjects();
 	}
 
+	/**
+     * Perform guess from the current Node
+     * @param in, the user input from terminal
+     */
 	public DecisionNode guess(Scanner in) {
 		System.out.print(question);
 		while(true) {
@@ -37,7 +53,11 @@ public class QuestionNode implements DecisionNode{
 		}
 
 	}
-	//Write out to file recursively
+	
+	/**
+     * Write out to file recursively
+     * @param out, the File that is going to be written
+     */
 	public void write(FileWriter out) throws IOException {	
 		out.write("#"+this.question + "\n");
 		this.left.write(out);
