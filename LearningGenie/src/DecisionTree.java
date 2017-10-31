@@ -1,4 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class DecisionTree {
@@ -8,42 +11,71 @@ public class DecisionTree {
 		this.root = new GuessNode("Dog");
 	}
 
+	public DecisionNode makeTree(Scanner in) {	
+		if(in.hasNextLine()) {
+			String next = in.nextLine();
+			if(next.startsWith("#")) {
+				return new QuestionNode(next.substring(1, next.length()),
+						               makeTree(in),makeTree(in));
+				
+			}else{
+				return new GuessNode(next);
+			}
+			
+		}else {
+			return null;
+		}
+	}
+
+	public DecisionTree(File file) throws FileNotFoundException {
+		Scanner inTree = new Scanner(file);
+		
+		//Check for empty file
+		if(!inTree.hasNextLine()) {
+			System.out.println("Empty File!");
+		}
+		
+		this.root = makeTree(inTree);
+	}
+
 	public int countObjects(){
-		return root.countObjects();
+		return this.root.countObjects();
 	}
 
 	public void guess(Scanner in){
-		this.root.guess(in);	
-	}
-
-	public void write(FileWriter out){
-
-	}
-
-	public static void main(String args[]){
-		Scanner in = new Scanner(System.in);
-		DecisionTree tree = new DecisionTree();
-		DecisionNode cur = tree.root;
-
 		System.out.println("I am the learning genie!");
 		System.out.println("I can figure out whatever you are thinking of by asking questions.");
-		System.out.println("I know " + tree.root.countObjects() + " thing! \n");
+		System.out.println("I know " + root.countObjects() + " thing(s)! \n");
+
 
 		while(true){
 			System.out.println("Think of an object!");
-			tree.root = cur.guess(in);
+			//if(root instanceof QuestionNode)System.out.println(((QuestionNode) root).question);
+			root = root.guess(in);
 			System.out.print("Do you want to continue?");
-			String ifContinue = in.nextLine();
-			if(ifContinue.equals("Yes")){
-				if(cur instanceof GuessNode){
-					cur = tree.root;
-				}else if(cur instanceof QuestionNode){
-					cur.guess(in);
+			String ifContinue;
+			while(true) {
+				ifContinue = in.nextLine().toLowerCase();
+				if(ifContinue.equals("no")){
+					break;
+				}else if(ifContinue.equals("yes")){
+					break;
+				}else {
+					System.out.print("Please enter yes or no! Reenter:");
 				}
-			}else if(ifContinue.equals("No")){
-                break;
+			}
+			if(ifContinue.equals("no")){
+				break;
+			}else if(ifContinue.equals("yes")){
+				System.out.println();
+				continue;
 			}
 		}
 	}
+
+	public void write(FileWriter out) throws IOException{
+			this.root.write(out);		
+	}
+
 
 }
