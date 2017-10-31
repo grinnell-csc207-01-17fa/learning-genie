@@ -49,10 +49,10 @@ public class DecisionTree {
 
 
 		while(true){
-			System.out.println("Think of an object!");
+			System.out.println("Think of an object! ");
 			//if(root instanceof QuestionNode)System.out.println(((QuestionNode) root).question);
 			root = root.guess(in);
-			System.out.print("Do you want to continue?");
+			System.out.print("Do you want to continue? ");
 			String ifContinue;
 			while(true) {
 				ifContinue = in.nextLine().toLowerCase();
@@ -61,7 +61,7 @@ public class DecisionTree {
 				}else if(ifContinue.equals("yes")){
 					break;
 				}else {
-					System.out.print("Please enter yes or no! Reenter:");
+					System.out.print("Please enter yes or no! Reenter: ");
 				}
 			}
 			if(ifContinue.equals("no")){

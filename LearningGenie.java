@@ -6,14 +6,15 @@ import java.util.Scanner;
 public class LearningGenie {
 
 	public static void main(String args[]) throws IOException{
-		File data = new File("data.txt");
-		DecisionTree tree = new DecisionTree(data);
+		File data = new File("data.tree");//open file specified
+		DecisionTree tree = new DecisionTree(data);//make tree
 		
-        Scanner in = new Scanner(System.in);
+        Scanner in = new Scanner(System.in);//wait for input
 		tree.guess(in);
 		
-		FileWriter out = new FileWriter("out.txt");
+		FileWriter out = new FileWriter("data.tree");//write out to file
 		tree.write(out);
-		out.close();
+		out.flush();//Flush buffer
+		out.close();//Close connection
 	}
 }
