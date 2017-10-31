@@ -7,10 +7,20 @@ import java.util.Scanner;
 public class DecisionTree {
 	public DecisionNode root;
 
+	
+    /**
+     * Constructs a new Decision Tree with Dog as the Root
+     * @param none
+     */
 	public DecisionTree(){
 		this.root = new GuessNode("Dog");
 	}
 
+	
+    /**
+     * Constructs a tree from the given input.
+     * @param Scanner in, the input stream
+     */
 	public DecisionNode makeTree(Scanner in) {	
 		if(in.hasNextLine()) {
 			String next = in.nextLine();
@@ -27,6 +37,11 @@ public class DecisionTree {
 		}
 	}
 
+	
+    /**
+     * Constructs a new Tree from the given file
+     * @param file, a File object
+     */
 	public DecisionTree(File file) throws FileNotFoundException {
 		Scanner inTree = new Scanner(file);
 		
@@ -38,10 +53,20 @@ public class DecisionTree {
 		this.root = makeTree(inTree);
 	}
 
+	
+    /**
+     * Return the count of GuessNode in the tree.
+     * @param none
+     */
 	public int countObjects(){
 		return this.root.countObjects();
 	}
 
+	
+    /**
+     * Perform the guess from the beginning
+     * @param in, the terminal that reads user inputs
+     */
 	public void guess(Scanner in){
 		System.out.println("I am the learning genie!");
 		System.out.println("I can figure out whatever you are thinking of by asking questions.");
