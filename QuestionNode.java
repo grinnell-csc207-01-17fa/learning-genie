@@ -1,14 +1,12 @@
-package non;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
 public class QuestionNode implements DecisionNode{
 	//Bunch o' variable declarations
-	public String question;
-	public DecisionNode left;
-	public DecisionNode right;
-	public int guessNodes;
+	private String question;
+	private DecisionNode left;
+	private DecisionNode right;
 
 
 	/**

@@ -1,13 +1,13 @@
-package non;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
 public class GuessNode implements DecisionNode {
 
-	public String guess;
-	public DecisionNode left;
-	public DecisionNode right;
+	private String guess;
+	private DecisionNode left;
+	private DecisionNode right;
 	
 	/**
 	 * Constructs QGuessNode

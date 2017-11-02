@@ -1,4 +1,4 @@
-package non;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class DecisionTree {
-	public DecisionNode root;
+	private DecisionNode root;
 
 
 	/**
@@ -22,7 +22,7 @@ public class DecisionTree {
 	 * Constructs a tree from the given input.
 	 * @param Scanner in, the input stream
 	 */
-	public DecisionNode makeTree(Scanner in) {	
+	private DecisionNode makeTree(Scanner in) {	
 		if(in.hasNextLine()) {
 			String next = in.nextLine();
 			if(next.startsWith("#")) {
